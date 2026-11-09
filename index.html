@@ -727,15 +727,39 @@
     const [newServiceInput, setNewServiceInput] = (0, import_react3.useState)("");
     const [newLevelInput, setNewLevelInput] = (0, import_react3.useState)("");
     const [previewCert, setPreviewCert] = (0, import_react3.useState)(null);
-    const triggerSheetsSync = () => {
+    const triggerSheetsSync = async () => {
+      if (!sheetConfig.webAppUrl || sheetConfig.webAppUrl === "" || sheetConfig.webAppUrl.includes("AKfycbz_AlMadinah_Personal_API")) {
+        alert("Silakan masukkan URL Web App Google Apps Script yang valid di menu 'Google Sheets API'!");
+        return;
+      }
+
       setIsSyncing(true);
-      setTimeout(() => {
+      try {
+        // Menggabungkan semua data yang ada di aplikasi
+        const fullData = { tasks, students, certificates, campaigns };
+        
+        // Mengirim data ke Google Apps Script
+        await fetch(sheetConfig.webAppUrl, {
+          method: 'POST',
+          mode: 'no-cors', // Mencegah error CORS dari sisi klien
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(fullData)
+        });
+
         setIsSyncing(false);
         const now = /* @__PURE__ */ new Date();
         setSheetConfig((prev) => __spreadProps(__spreadValues({}, prev), {
           lastSync: now.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit", second: "2-digit" })
         }));
-      }, 800);
+        
+        alert("Data berhasil disinkronisasi ke Google Sheets!");
+      } catch (error) {
+        setIsSyncing(false);
+        console.error("Sync Error:", error);
+        alert("Gagal sinkronisasi data. Periksa koneksi internet dan URL Anda.");
+      }
     };
     const stats = (0, import_react3.useMemo)(() => {
       const completedTasks = tasks.filter((t) => t.status === "Selesai").length;
