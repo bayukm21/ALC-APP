@@ -1224,15 +1224,26 @@
         onChange: (e) => setSheetConfig(__spreadProps(__spreadValues({}, sheetConfig), { webAppUrl: e.target.value })),
         className: "w-full bg-slate-50 border rounded-xl p-2.5 font-mono"
       }
-    ))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "pt-2 flex justify-end" }, /* @__PURE__ */ import_react3.default.createElement(
-      "button",
-      {
-        onClick: triggerSheetsSync,
-        className: "bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-4 py-2.5 rounded-xl shadow-sm transition flex items-center space-x-2"
-      },
-      /* @__PURE__ */ import_react3.default.createElement(RefreshCw, { className: `w-3.5 h-3.5 ${isSyncing ? "animate-spin" : ""}` }),
-      /* @__PURE__ */ import_react3.default.createElement("span", null, "Uji Koneksi & Push Data")
-    ))))), optionsModalOpen && /* @__PURE__ */ import_react3.default.createElement("div", { className: "fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-white rounded-2xl shadow-xl border border-slate-200 max-w-lg w-full overflow-hidden" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center space-x-2" }, /* @__PURE__ */ import_react3.default.createElement(Settings, { className: "w-4 h-4 text-emerald-600" }), /* @__PURE__ */ import_react3.default.createElement("h3", { className: "font-bold text-slate-800 text-sm" }, "Kelola Opsi Dropdown Data Murid")), /* @__PURE__ */ import_react3.default.createElement("button", { onClick: () => setOptionsModalOpen(false), className: "text-slate-400 hover:text-slate-600" }, /* @__PURE__ */ import_react3.default.createElement(X, { className: "w-5 h-5" }))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "p-5 space-y-6 text-xs max-h-[75vh] overflow-y-auto" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ import_react3.default.createElement("label", { className: "block font-bold text-slate-800" }, "Opsi Jenis Layanan"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex space-x-2" }, /* @__PURE__ */ import_react3.default.createElement(
+    ))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "pt-2 flex justify-end gap-3" }, 
+      /* @__PURE__ */ import_react3.default.createElement(
+        "button",
+        {
+          onClick: triggerSheetsSync,
+          className: "bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-4 py-2.5 rounded-xl shadow-sm transition flex items-center space-x-2"
+        },
+        /* @__PURE__ */ import_react3.default.createElement(RefreshCw, { className: `w-3.5 h-3.5 ${isSyncing ? "animate-spin" : ""}` }),
+        /* @__PURE__ */ import_react3.default.createElement("span", null, "Push ke Sheets")
+      ),
+      /* @__PURE__ */ import_react3.default.createElement(
+        "button",
+        {
+          onClick: pullDataFromSheets,
+          className: "bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs px-4 py-2.5 rounded-xl shadow-sm transition flex items-center space-x-2"
+        },
+        /* @__PURE__ */ import_react3.default.createElement(Download, { className: `w-3.5 h-3.5 ${isSyncing ? "animate-bounce" : ""}` }),
+        /* @__PURE__ */ import_react3.default.createElement("span", null, "Tarik Data")
+      )
+    )))), optionsModalOpen && /* @__PURE__ */ import_react3.default.createElement("div", { className: "fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-white rounded-2xl shadow-xl border border-slate-200 max-w-lg w-full overflow-hidden" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center space-x-2" }, /* @__PURE__ */ import_react3.default.createElement(Settings, { className: "w-4 h-4 text-emerald-600" }), /* @__PURE__ */ import_react3.default.createElement("h3", { className: "font-bold text-slate-800 text-sm" }, "Kelola Opsi Dropdown Data Murid")), /* @__PURE__ */ import_react3.default.createElement("button", { onClick: () => setOptionsModalOpen(false), className: "text-slate-400 hover:text-slate-600" }, /* @__PURE__ */ import_react3.default.createElement(X, { className: "w-5 h-5" }))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "p-5 space-y-6 text-xs max-h-[75vh] overflow-y-auto" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ import_react3.default.createElement("label", { className: "block font-bold text-slate-800" }, "Opsi Jenis Layanan"), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex space-x-2" }, /* @__PURE__ */ import_react3.default.createElement(
       "input",
       {
         type: "text",
