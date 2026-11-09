@@ -767,6 +767,46 @@
         alert("Gagal sinkronisasi data. Periksa koneksi internet dan URL Anda.");
       }
     };
+    // Fungsi baru untuk Menarik Data dari Sheets
+    const pullDataFromSheets = async () => {
+      if (!sheetConfig.webAppUrl || sheetConfig.webAppUrl === "") {
+        alert("Silakan masukkan URL Web App terlebih dahulu!");
+        return;
+      }
+
+      setIsSyncing(true);
+      try {
+        // Karena ini GET request, fetch akan mendapatkan JSON dari doGet
+        const response = await fetch(sheetConfig.webAppUrl);
+        const data = await response.json();
+
+        // Jika API error
+        if (data.error) {
+          alert("Error dari Sheets: " + data.error);
+          setIsSyncing(false);
+          return;
+        }
+
+        // Memperbarui state (tampilan) aplikasi dengan data dari Sheets
+        if (data.tasks) setTasks(data.tasks);
+        if (data.students) setStudents(data.students);
+        if (data.certificates) setCertificates(data.certificates);
+        if (data.campaigns) setCampaigns(data.campaigns);
+        
+        // Simpan waktu penarikan data
+        const now = /* @__PURE__ */ new Date();
+        setSheetConfig((prev) => __spreadProps(__spreadValues({}, prev), {
+          lastSync: "Tarik: " + now.toLocaleTimeString("id-ID", { hour: "2-digit", minute: "2-digit", second: "2-digit" })
+        }));
+
+        alert("Berhasil! Data telah diperbarui dari Google Sheets.");
+      } catch (error) {
+        console.error("Pull Error:", error);
+        alert("Gagal menarik data. Pastikan URL Apps Script benar dan internet stabil.");
+      } finally {
+        setIsSyncing(false);
+      }
+    };
     const stats = (0, import_react3.useMemo)(() => {
       const completedTasks = tasks.filter((t) => t.status === "Selesai").length;
       const activeStudents = students.filter((s) => s.status === "Aktif").length;
