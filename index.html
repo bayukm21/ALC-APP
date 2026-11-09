@@ -711,10 +711,13 @@
     (0, import_react3.useEffect)(() => {
       localStorage.setItem("amd_dropdowns", JSON.stringify(dropdownOptions));
     }, [dropdownOptions]);
-    const [sheetConfig, setSheetConfig] = (0, import_react3.useState)({
-      spreadsheetId: "1BxiMVs0XRA5nFMdKbBUI6yU1N3z_AlMadinah_Personal",
-      webAppUrl: "https://script.google.com/macros/s/AKfycbz_AlMadinah_Personal_API/exec",
-      lastSync: "Baru saja"
+    (0, import_react3.useEffect)(() => {
+      localStorage.setItem("amd_sheetconfig", JSON.stringify(sheetConfig));
+    }, [sheetConfig]);
+   const [sheetConfig, setSheetConfig] = (0, import_react3.useState)(() => JSON.parse(localStorage.getItem("amd_sheetconfig")) || {
+      spreadsheetId: "",
+      webAppUrl: "",
+      lastSync: "Belum pernah"
     });
     const [isSyncing, setIsSyncing] = (0, import_react3.useState)(false);
     const [searchTerm, setSearchTerm] = (0, import_react3.useState)("");
