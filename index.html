@@ -714,10 +714,13 @@
     (0, import_react3.useEffect)(() => {
       localStorage.setItem("amd_sheetconfig", JSON.stringify(sheetConfig));
     }, [sheetConfig]);
-   const [sheetConfig, setSheetConfig] = (0, import_react3.useState)(() => JSON.parse(localStorage.getItem("amd_sheetconfig")) || {
-      spreadsheetId: "",
-      webAppUrl: "",
-      lastSync: "Belum pernah"
+   const [sheetConfig, setSheetConfig] = (0, import_react3.useState)(() => {
+      try {
+        const saved = localStorage.getItem("amd_sheetconfig");
+        return saved ? JSON.parse(saved) : { spreadsheetId: "", webAppUrl: "", lastSync: "Belum pernah" };
+      } catch (error) {
+        return { spreadsheetId: "", webAppUrl: "", lastSync: "Belum pernah" };
+      }
     });
     const [isSyncing, setIsSyncing] = (0, import_react3.useState)(false);
     const [searchTerm, setSearchTerm] = (0, import_react3.useState)("");
