@@ -711,9 +711,6 @@
     (0, import_react3.useEffect)(() => {
       localStorage.setItem("amd_dropdowns", JSON.stringify(dropdownOptions));
     }, [dropdownOptions]);
-    (0, import_react3.useEffect)(() => {
-      localStorage.setItem("amd_sheetconfig", JSON.stringify(sheetConfig));
-    }, [sheetConfig]);
    const [sheetConfig, setSheetConfig] = (0, import_react3.useState)(() => {
       try {
         const saved = localStorage.getItem("amd_sheetconfig");
@@ -722,6 +719,9 @@
         return { spreadsheetId: "", webAppUrl: "", lastSync: "Belum pernah" };
       }
     });
+    (0, import_react3.useEffect)(() => {
+      localStorage.setItem("amd_sheetconfig", JSON.stringify(sheetConfig));
+    }, [sheetConfig]);
     const [isSyncing, setIsSyncing] = (0, import_react3.useState)(false);
     const [searchTerm, setSearchTerm] = (0, import_react3.useState)("");
     const [filterStatus, setFilterStatus] = (0, import_react3.useState)("All");
